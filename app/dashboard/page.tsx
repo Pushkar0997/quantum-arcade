@@ -4,61 +4,80 @@ import { useState, useCallback } from "react";
 import { LEVELS } from "@/data/levels";
 import MissionBriefing from "@/components/MissionBriefing";
 import CircuitBoard from "@/components/CircuitBoard";
-import { Trophy, Sparkles } from "lucide-react";
+import { Sparkles, CheckCircle2 } from "lucide-react";
 
 export default function Dashboard() {
     const [currentLevelIndex, setCurrentLevelIndex] = useState(0);
+    const [gameComplete, setGameComplete] = useState(false);
     const currentLevel = LEVELS[currentLevelIndex];
 
     const handleLevelComplete = useCallback(() => {
         // Wait so user sees the success message
         setTimeout(() => {
-            setCurrentLevelIndex((prev) => prev + 1);
+            // Check if this was the final level (Level 3, index 2)
+            if (currentLevelIndex >= LEVELS.length - 1) {
+                setGameComplete(true);
+            } else {
+                setCurrentLevelIndex((prev) => prev + 1);
+            }
         }, 1500);
-    }, []);
+    }, [currentLevelIndex]);
 
-    // Victory Screen - All levels complete
-    if (!currentLevel) {
+    // Victory Screen - All levels complete (System Secured)
+    if (gameComplete || !currentLevel) {
         return (
             <main className="min-h-screen bg-cyber-black pt-20 pb-8 px-4 flex items-center justify-center">
                 <div className="max-w-2xl mx-auto text-center">
-                    {/* Victory Icon */}
-                    <div className="relative mb-8">
-                        <div className="w-32 h-32 mx-auto rounded-full bg-cyber-green/20 flex items-center justify-center border-2 border-cyber-green animate-pulse">
-                            <Trophy className="w-16 h-16 text-cyber-green" />
-                        </div>
-                        <Sparkles className="w-8 h-8 text-yellow-400 absolute top-0 right-1/3 animate-bounce" />
-                    </div>
-
-                    {/* Victory Message */}
-                    <h1 className="text-4xl md:text-5xl font-bold text-cyber-green neon-glow mb-4 tracking-wider">
-                        SIMULATION COMPLETE
-                    </h1>
-                    <p className="text-xl text-gray-400 mb-8">
-                        Congratulations, Agent. You have mastered the quantum realm.
-                    </p>
-
-                    {/* Stats */}
-                    <div className="bg-cyber-gray/50 border border-cyber-green/30 rounded-lg p-6 mb-8">
-                        <div className="grid grid-cols-2 gap-4">
-                            <div className="text-center">
-                                <p className="text-3xl font-bold text-cyber-green">{LEVELS.length}</p>
-                                <p className="text-sm text-gray-500">Levels Completed</p>
+                    {/* Victory Card Container */}
+                    <div className="bg-gradient-to-b from-cyber-gray/80 to-cyber-gray/40 border-2 border-cyber-green rounded-2xl p-8 md:p-12 shadow-2xl shadow-cyber-green/20">
+                        {/* Victory Icon */}
+                        <div className="relative mb-8">
+                            <div className="w-36 h-36 mx-auto rounded-full bg-gradient-to-br from-cyber-green/30 to-cyber-green/10 flex items-center justify-center border-4 border-cyber-green shadow-lg shadow-cyber-green/40">
+                                <CheckCircle2 className="w-20 h-20 text-cyber-green drop-shadow-lg" />
                             </div>
-                            <div className="text-center">
-                                <p className="text-3xl font-bold text-cyber-green">100%</p>
-                                <p className="text-sm text-gray-500">Quantum Mastery</p>
+                            <Sparkles className="w-8 h-8 text-yellow-400 absolute -top-2 right-1/4 animate-bounce" />
+                            <Sparkles className="w-6 h-6 text-cyber-green absolute -bottom-1 left-1/4 animate-pulse" />
+                        </div>
+
+                        {/* Victory Title */}
+                        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-cyber-green neon-glow mb-4 tracking-widest uppercase">
+                            System Secured
+                        </h1>
+
+                        {/* Divider */}
+                        <div className="w-24 h-1 bg-gradient-to-r from-transparent via-cyber-green to-transparent mx-auto mb-6"></div>
+
+                        {/* Success Message */}
+                        <p className="text-lg md:text-xl text-gray-300 mb-8">
+                            You have mastered Single-Qubit Operations.
+                        </p>
+
+                        {/* Stats Summary */}
+                        <div className="bg-cyber-black/50 border border-cyber-green/30 rounded-xl p-6 mb-8">
+                            <div className="grid grid-cols-3 gap-4">
+                                <div className="text-center">
+                                    <p className="text-3xl font-bold text-cyber-green font-mono">{LEVELS.length}</p>
+                                    <p className="text-xs text-gray-500 uppercase tracking-wider">Levels</p>
+                                </div>
+                                <div className="text-center border-x border-cyber-green/20">
+                                    <p className="text-3xl font-bold text-cyber-green font-mono">2</p>
+                                    <p className="text-xs text-gray-500 uppercase tracking-wider">Gates Learned</p>
+                                </div>
+                                <div className="text-center">
+                                    <p className="text-3xl font-bold text-cyber-green font-mono">100%</p>
+                                    <p className="text-xs text-gray-500 uppercase tracking-wider">Complete</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    {/* Restart Button */}
-                    <button
-                        onClick={() => setCurrentLevelIndex(0)}
-                        className="px-8 py-4 bg-cyber-green text-cyber-black font-bold text-lg rounded-lg hover:shadow-lg hover:shadow-cyber-green/30 transition-all duration-300"
-                    >
-                        RESTART SIMULATION
-                    </button>
+                        {/* Return Button */}
+                        <button
+                            onClick={() => window.location.reload()}
+                            className="px-8 py-4 bg-cyber-green text-cyber-black font-bold text-sm rounded-lg hover:shadow-lg hover:shadow-cyber-green/40 transition-all duration-300 uppercase tracking-wider"
+                        >
+                            Return to Main Menu
+                        </button>
+                    </div>
                 </div>
             </main>
         );

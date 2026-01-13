@@ -3,47 +3,51 @@ import { Level } from "@/types/game";
 export const LEVELS: Level[] = [
     {
         id: 1,
-        title: "The Quantum Coin",
-        story: "Agent, the vault lock is oscillating. It exists in two states at once. You must synchronize your key to match the superposition.",
-        mission: `### The H-Gate
-In the classical world, a switch is either **OFF (0)** or **ON (1)**.
-
-In the Quantum world, we use the **Hadamard Gate (H)** to put a Qubit into **Superposition**.
-
-This means it has a 50% chance of being 0, and a 50% chance of being 1.`,
-        objective: "Apply an H-Gate to q1 to enter Superposition.",
+        title: "The Awakening",
+        story: "System Offline. We need to wake up the Qubit.",
+        mission: `Classical computers use 0 and 1. The **X-Gate** acts like a switch. It flips 0 to 1.`,
+        objective: "Flip Qubit 0 from Off (0) to On (1).",
         docsUrl: "https://quantum.country/qcvc",
-        solutionSteps: ["Select q1", "Click [H] Gate", "Run Simulation"],
+        solutionSteps: ["Target Qubit 0", "Click [X] Gate", "Run Simulation"],
         successCondition: {
             qubit: 0,
-            probability: 0.5,
-            description: "q1 must have 50% probability of being 1.",
+            probability: 1.0,
+            description: "Qubit Active",
         },
     },
     {
         id: 2,
-        title: "Spooky Action",
-        story: "Good work. Now we need to link two particles. When one spins up, the other must follow instantly.",
-        mission: `### Entanglement
-By combining an **H-Gate** and a **CNOT Gate**, we create a Bell State.
+        title: "The Uncertainty",
+        story: "Good. Now let's enter the Quantum Realm.",
+        mission: `The **H-Gate** (Hadamard) creates a 50/50 probability split. The Qubit is now spinning.`,
+        objective: "Put Qubit 0 into Superposition (50% 0, 50% 1).",
+        docsUrl: "https://quantum.country/qcvc",
+        solutionSteps: ["Target Qubit 0", "Click [H] Gate", "Run Simulation"],
+        successCondition: {
+            qubit: 0,
+            probability: 0.5,
+            description: "Superposition Achieved",
+        },
+    },
+    {
+        id: 3,
+        title: "The Stabilizer",
+        story: "CRITICAL WARNING. Qubit 0 is destabilizing. We cannot leave it in Superposition. You must reverse the quantum state.",
+        mission: `Quantum Gates are reversible. If you apply a Hadamard (H) gate to a superposed particle, it returns to zero.
 
-Changes to one Qubit instantly affect the other, no matter the distance.
-
-**Recipe:**
-1. Apply **H** to q1 (creates superposition)
-2. Apply **CNOT** (entangles q1 with q2)`,
-        objective: "Create Entanglement: H on q1, then CNOT.",
+**H + H = 0**.`,
+        objective: "Apply an H-Gate, then apply a SECOND H-Gate to return Qubit 0 to the Ground State (0).",
         docsUrl: "https://quantum.country/qcvc",
         solutionSteps: [
-            "Select q1",
+            "Target Qubit 0",
             "Click [H] Gate",
-            "Click [CNOT] Gate",
+            "Click [H] Gate again",
             "Run Simulation",
         ],
         successCondition: {
-            qubit: 1,
-            probability: 0.5,
-            description: "System Entangled. q2 correlated with q1.",
+            qubit: 0,
+            probability: 0,
+            description: "System Stabilized (0% Probability of 1)",
         },
     },
 ];

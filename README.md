@@ -1,4 +1,12 @@
+# Quantum Arcade
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+## 🎮 Live Demo
+
+**Try it now!** You can play Quantum Arcade directly in your browser without any setup:
+
+👉 **[https://quantum-arcade.web.app/](https://quantum-arcade.web.app/)**
 
 ## Getting Started
 

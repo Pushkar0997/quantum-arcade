@@ -72,7 +72,7 @@ export default function Dashboard() {
 
                         {/* Return Button */}
                         <button
-                            onClick={() => window.location.reload()}
+                            onClick={() => window.location.href = "/"}
                             className="px-8 py-4 bg-cyber-green text-cyber-black font-bold text-sm rounded-lg hover:shadow-lg hover:shadow-cyber-green/40 transition-all duration-300 uppercase tracking-wider"
                         >
                             Return to Main Menu

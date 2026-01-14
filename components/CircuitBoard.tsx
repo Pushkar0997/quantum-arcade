@@ -212,7 +212,7 @@ export default function CircuitBoard({ level, onSuccess }: CircuitBoardProps) {
                             : "bg-cyber-dim border border-cyber-green/50 text-gray-400 hover:text-cyber-green"
                             }`}
                     >
-                        q2
+                        q0
                     </button>
                 </div>
             </div>

@@ -203,7 +203,7 @@ export default function CircuitBoard({ level, onSuccess }: CircuitBoardProps) {
                             : "bg-cyber-dim border border-cyber-green/50 text-gray-400 hover:text-cyber-green"
                             }`}
                     >
-                        q1
+                        q0
                     </button>
                     <button
                         onClick={() => setSelectedQubit(1)}
@@ -212,7 +212,7 @@ export default function CircuitBoard({ level, onSuccess }: CircuitBoardProps) {
                             : "bg-cyber-dim border border-cyber-green/50 text-gray-400 hover:text-cyber-green"
                             }`}
                     >
-                        q0
+                        q1
                     </button>
                 </div>
             </div>
